@@ -5,6 +5,6 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://astro-blog-with-pagination-template.vercel.app/', //change site URL
+  site: 'https://astro-blog-with-pagination-template-tailwind.vercel.app/', //change site URL
   integrations: [mdx(), sitemap(), tailwind()]
 });
