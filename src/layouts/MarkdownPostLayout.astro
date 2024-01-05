@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { Picture } from "astro:assets";
 const { frontmatter } = Astro.props;
 ---
 
@@ -14,7 +15,7 @@ const { frontmatter } = Astro.props;
 
     <p class="font-semibold">Written by: {frontmatter.author}</p>
 
-    <img src={frontmatter.image.url} alt={frontmatter.image.alt} class="w-72 mx-auto my-4" />
+    <Picture src={frontmatter.image.url} alt={frontmatter.image.alt} class="w-72 mx-auto my-4" />
 
     <slot />
 
