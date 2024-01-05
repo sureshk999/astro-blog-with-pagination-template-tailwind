@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image, Picture } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro'
 
 // Define a basic structure for the pagination result
@@ -60,7 +60,7 @@ type PostItem = {
                         <h3 class="text-xl font-bold">{data.title}</h3>
                         <p>{data.description}</p>
                         <div class="flex justify-center items-center h-full">
-                            <Picture src={data.cover} alt={data.coverAlt} height="200" width="300" class="m-auto"/>
+                            <Picture formats={['avif', 'webp']} src={data.cover} alt={data.coverAlt} height="200" width="300" class="m-auto"/>
                         </div>
                     </div>
                 </a>
