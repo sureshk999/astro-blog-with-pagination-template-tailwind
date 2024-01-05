@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://astro-blog-with-pagination-template.vercel.app/sitemap-index.xml
+Sitemap: http://astro-blog-with-pagination-template-tailwind.vercel.app/sitemap-index.xml
