@@ -15,7 +15,7 @@ const { frontmatter } = Astro.props;
 
     <p class="font-semibold">Written by: {frontmatter.author}</p>
 
-    <Picture src={frontmatter.image.url} alt={frontmatter.image.alt} class="w-72 mx-auto my-4" />
+    <Picture src={frontmatter.image.url} alt={frontmatter.image.alt} width="600" height="400" class="w-72 mx-auto my-4" />
 
     <slot />
 

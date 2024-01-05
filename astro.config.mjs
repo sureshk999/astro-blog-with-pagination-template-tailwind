@@ -1,11 +1,10 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://astro-blog-with-pagination-template.vercel.app/', //change site URL
   integrations: [mdx(), sitemap(), tailwind()]
 });
