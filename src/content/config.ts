@@ -6,10 +6,10 @@ const postsCollection = defineCollection({
       pubDate: z.date(),
       description: z.string(),
       author: z.optional(z.string()),
-      cover: image().refine((img) => img.width >= 600, {
+      image: image().refine((img) => img.width >= 600, {
         message: "Cover image must be at least 600 pixels wide!",
       }),
-      coverAlt: z.string(),
+      imageAlt: z.string(),
       tags: z.array(z.string()),
       // Add a 'draft' property, which is a boolean false or true no ``
       draft: z.optional(z.boolean()),
