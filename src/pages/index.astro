@@ -13,22 +13,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	</head>
 	<body>
 		<Header title={SITE_TITLE} />
-		<main>
-			<h1>Hi 👋 </h1>
-			<p>
-				Welcome to my <a href="https://astro.build/">Astro 🚀</a> blog starter template. This
-				template was designed to be a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with <code>Astro</code>.
+		<main class="container mx-auto p-6 w-[750px]">
+			<h1 class="text-4xl font-bold text-left mb-6">Hi 👋</h1>
+			<p class="mb-4">
+			  Welcome to my <a href="https://astro.build/" class="text-blue-600 hover:text-blue-800">Astro 🚀</a> blog starter template...
 			</p>
-			<p>
-				This template comes with a few integrations already like <code>Tailwind CSS</code>, <code>Markdown X (MDX)</code>  support and sitemap and rss generation. 
+			<p class="mb-4">
+			  This template comes with a few integrations already like <span class="bg-gray-200 rounded p-1">Tailwind CSS</span>, <span class="bg-gray-200 rounded p-1">Markdown X (MDX)</span> support and sitemap and rss generation.
 			</p>
-			
-
-
-<p>This template includes:</p>
-
-<ul>
+	  
+			<p class="font-semibold mb-2">This template includes:</p>
+			<ul class="list-disc pl-5 mb-4">
 
 <li><strong>Blazing fast</strong> - Amazing performance scores out of the box</li>
 
@@ -54,15 +49,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 </ul>
 
-<p>If you find this template useful, please support continued development by <a href="https://buymeacoffee.com/sureshkhirwadkar">buying me a coffee ☕️</a>.</p>
+<p class="mb-4">
+	If you find this template useful, please support continued development by <a href="https://buymeacoffee.com/sureshkhirwadkar" class="text-blue-600 hover:text-blue-800">buying me a coffee ☕️</a>.
+  </p>
 
-			
-			<p>
-				Looking for more templates? Maybe you need a finished, polished blog template you can use to get your site going within a few minutes? Check out <a
-					href="https://sureshkhirwadkar.dev"
-					>my other work
-				</a> on my dev website.
-			</p>
+  <p class="mb-4">
+	Looking for more templates? Check out <a href="https://sureshkhirwadkar.dev" class="text-blue-600 hover:text-blue-800">my other work</a> on my dev website.
+  </p>
+
 		</main>
 		<Footer />
 	</body>

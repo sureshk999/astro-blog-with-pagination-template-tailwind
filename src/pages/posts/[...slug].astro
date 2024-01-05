@@ -15,76 +15,37 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 
-
-// Assuming you have a `posts` collection
-// Fetching posts and sorting them by pubDate in descending order
+// Fetching posts and sorting them
 const allPosts = (await getCollection('posts'))
   .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
-
-// Log allPosts to inspect their structure
-// console.log('All Posts:', allPosts);
-
-// Function to find the current post index
 const findCurrentPostIndex = (slug: string) => {
     return allPosts.findIndex(post => post.slug === slug);
 };
 
-
-
-const fullSlug = Astro.url.pathname; // Full path
-// console.log('Full Slug:', fullSlug);
-
-// Split the pathname and pop the last element. Fallback to an empty string if undefined
+const fullSlug = Astro.url.pathname; 
 const currentSlug = fullSlug.split('/').pop() || '';
-// console.log('Current Slug:', currentSlug);
-
-
-// Find current, next, and previous posts
 const currentIndex = findCurrentPostIndex(currentSlug);
-const previousPost = allPosts[currentIndex -1 ];
+const previousPost = allPosts[currentIndex - 1];
 const nextPost = allPosts[currentIndex + 1];
-
-// Log the currentIndex to the console
-// console.log('Current Index:', currentIndex);
-// console.log('Previous Post:', previousPost);
-// console.log('Next Post:', nextPost);
-// console.log('Current Index:', currentIndex);
 ---
+
 <MarkdownPostLayout frontmatter={entry.data}>
   
   <Content />
 
-  <div style="width: 600px; margin: auto auto; text-align: center;">
-
-    <!-- Previous Post Link -->
-  
-    <!-- <div>
-      <a href={`/posts/${previousPost.slug}`} class="text-blue-500 hover:text-blue-700">Previous: {previousPost.data.title}
-       {previousPost.data.image && (
-          <Picture src={previousPost.data.image.url} alt={previousPost.data.image.alt} height="200" width="300"/>)}
-      </a> 
-    </div> -->
-
-
-
+  <div class="w-full md:w-3/4 lg:w-1/2 mx-auto text-center">
     {previousPost && (
-      <a style="margin-left: 0; text-align: left" href={`/posts/${previousPost.slug}`} class="text-blue-500 hover:text-blue-700"> ⬅️ Previous: {previousPost.data.title}</a>
-   )}
-
-    
-
-    <!-- Next Post Link -->
-  
-   
-    {nextPost && (
-       <a  style="margin-right: 0; text-align: right" href={`/posts/${nextPost.slug}`} class="text-blue-500 hover:text-blue-700">
-        Next :{nextPost.data.title} ➡️
+      <a href={`/posts/${previousPost.slug}`} class="inline-block text-left text-blue-500 hover:text-blue-700 mr-4">
+        ⬅️ Previous: {previousPost.data.title}
       </a>
     )}
 
-
+    {nextPost && (
+      <a href={`/posts/${nextPost.slug}`} class="inline-block text-right text-blue-500 hover:text-blue-700">
+        Next: {nextPost.data.title} ➡️
+      </a>
+    )}
   </div>
 
 </MarkdownPostLayout>
-
