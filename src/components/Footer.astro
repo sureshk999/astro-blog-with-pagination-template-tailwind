@@ -1,0 +1,39 @@
+---
+import SocialIcons from "./SocialIcons.astro";
+const today = new Date();
+---
+
+<footer>
+	<!-- &copy;  -->
+	Built {today.getFullYear()} by 
+	<a href="https://sureshkhirwadkar.dev">Suresh Khirwadkar</a>
+	<div  class="social-links">
+		<SocialIcons />
+	</div>
+	<a href="https://buymeacoffee.com/sureshkhirwadkar" style="color:black; margin-left: 10px;"><h2>buy me a coffee</h2></a>
+</footer>
+<style>
+	footer {
+		padding: 2em 1em 6em 1em;
+		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		color: rgb(var(--gray));
+		text-align: center;
+	}
+	.social-links {
+		display: flex;
+		justify-content: center;
+		gap: 1em;
+		margin-top: 1em;
+	}
+	.social-links a {
+		text-decoration: none;
+		color: rgb(var(--gray));
+	}
+	.social-links a:hover {
+		color: rgb(var(--gray-dark));
+	}
+	h2 {
+        margin: 0;
+        font-size: 1em;
+      }
+</style>

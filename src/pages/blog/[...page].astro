@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+// Define a basic structure for the pagination result
+type PaginationResult = {
+    currentPage: number;
+    lastPage: number;
+    data: any[]; // Adjust the type to match the structure of your paginated items
+    url: {
+        prev?: string;
+        next?: string;
+    };
+};
+
+
+type PaginateFunction = (items: any[], config: { pageSize: number }) => Promise<PaginationResult>;
+
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
+    const pages = await getCollection('posts', ({ data }) => {
+        return data.draft !== true; // Filter out drafts if necessary
+    });
+    return paginate(pages, { pageSize: 3}); // Adjust pageSize as needed
+}
+
+const { page }: { page: PaginationInfo } = Astro.props;
+const { prev, next } = page.url;
+
+// Define a type for the pagination information
+type PaginationInfo = {
+    currentPage: number;
+    lastPage: number;
+    data: PostItem[];
+    url: {
+        prev?: string;
+        next?: string;
+    };
+};
+
+
+// Define a type for the individual post item
+type PostItem = {
+    data: {
+        title: string;
+        description: string;
+        image: {
+            url: string;
+            alt: string;
+        };
+    };
+    slug: string;
+};
+---
+<BaseLayout>
+  <main>
+
+    <div style="width:500px; margin: auto">
+        {page.data.map(({ data, slug }) => (
+            <a style="text-decoration: none; color:black;" href={`/posts/${slug}`}>
+            <div style=" background-color: rgb(232, 233, 232); border-radius: 10px; border:solid; padding:10px; margin:10px">
+            <h3>{data.title}</h3>
+            <p>{data.description}</p>
+            <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <Picture src={data.image.url} alt={data.image.alt} height="200" width="300" style="margin: auto;"/>
+</div>
+            </div>
+        </a>
+        ))}
+    </div>
+
+    <div style="text-align: center;">
+        <p>Page {page.currentPage} of {page.lastPage}</p>
+
+        <div style="text-align: center;">
+        {prev && <a href={prev}>Previous Page</a>}
+        
+        {next && <a href={next}>Next Page</a>}
+        </div>
+    </div>
+    </main>
+</BaseLayout>
